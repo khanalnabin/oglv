@@ -34,7 +34,7 @@ void Angel::draw() {
 		float x1 = current_buffer[i + 1].x;
 		float y1 = current_buffer[i + 1].y;
 		float z1 = (current_buffer[i + 1].z);
-		Line l(x0, y0, z0, x1, y1, z1);
+		Line l(x0, y0, z0, x1, y1, z1,30);
 		l.draw3D();
 	}
 	//
@@ -159,11 +159,4 @@ void Angel::set_model(const oglm::vec3 &tFactor, const oglm::vec3 &sFactor,
 	// 	std::cout << std::endl;
 	// }
 	model = trans * rot * scal;
-
-	for (int i = 0; i < 4; i++) {
-		for (int j = 0; j < 4; j++) {
-			std::cout << model[i][j] << "\t";
-		}
-		std::cout << std::endl;
-	}
 }

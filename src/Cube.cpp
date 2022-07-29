@@ -37,7 +37,7 @@ Cube::Cube(unsigned int length, unsigned int thickness) : thickness(thickness) {
 
 void Cube::animate() {}
 void Cube::rasterize() {
-	float offset = 0.001f;
+	float offset = 0.07f;
 	for (auto &i : indices) {
 		float x0 = points[i.x].x;
 		float y0 = points[i.x].y;
@@ -57,8 +57,7 @@ void Cube::rasterize() {
 				Angel::vertexBuffer.push_back(oglm::vec3(x0, y0, temp));
 				Angel::vertexBuffer.push_back(oglm::vec3(x1, y1, temp));
 				temp += offset;
-			}
-		}
+			} }
 		if (z0 == -z1) {
 			float temp = y0;
 			while (temp < 0.5) {

@@ -148,15 +148,25 @@ void Line::draw() {
 void Line::draw3D() {
 	for (auto &i : points3D) {
 		std::string key = std::to_string(i.x) + ',' + std::to_string(i.y);
+
 		// Angel::putPixel(i.x, i.y, thickness);
-		if (Angel::depth_buffer.find(key) == Angel::depth_buffer.end()) {
-			Angel::depth_buffer[key] = i.z;
-			Angel::putPixel(i.x, i.y, thickness);
-		} else {
-			if (i.z >= Angel::depth_buffer[key]) {
+		if (i.x >= -0.75f && i.x <= 0.75f && i.y >= -0.75f && i.y <= 0.75f) {
+			if (Angel::depth_buffer.find(key) == Angel::depth_buffer.end()) {
 				Angel::depth_buffer[key] = i.z;
 				Angel::putPixel(i.x, i.y, thickness);
+			} else {
+				if (i.z >= Angel::depth_buffer[key]) {
+		            std::cout << key << std::endl;
+					Angel::depth_buffer[key] = i.z;
+					Angel::putPixel(i.x, i.y, thickness);
+				}
+				else{
+                    std::cout<<"Not drawing"<<std::endl;
+
+				}
 			}
+		} else {
+			std::cout << "Crossed the border" << std::endl;
 		}
 	}
 }
